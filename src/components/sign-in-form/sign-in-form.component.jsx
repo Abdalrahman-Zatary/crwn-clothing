@@ -19,7 +19,6 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState([defaultFormFields]);
   const { email, password } = formFields;
   
-  console.log(formFields);
 
   const resetFormFilds = () => {
     setFormFields(defaultFormFields);
@@ -42,8 +41,18 @@ const SignInForm = () => {
       console.log(response);
       resetFormFilds();
 
-    } catch(erorr) {
-    }
+    } catch(error) {
+      switch(error.code) {
+        case 'auth/wrong-password':
+          alert('incorrect password for email');
+          break;
+        case 'auth/user-not-found':
+          alert("no user associated with this email");
+          break;
+        default:
+          console.log("user sign in encountered an error", error);
+      };
+    };
   };
 
   const handleChange = (event) => {
@@ -76,7 +85,9 @@ const SignInForm = () => {
         />
         <div className="buttons-container">
           <Button type="submit">Sign In</Button>
-          <Button buttonType="google" onClick={signInWithGoogle}>Google sign in</Button>
+          <Button type="button" buttonType="google" onClick={signInWithGoogle}>
+            Google sign in
+          </Button>
         </div>
       </form>
     </div>
