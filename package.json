@@ -13,6 +13,7 @@
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
     "sass": "^1.97.2",
+    "styled-components": "^6.3.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
