@@ -2,9 +2,10 @@ import { createContext, useEffect, useReducer } from 'react';
 import {
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
-} from "../utils/firebase/firebase.utils";
+} from '../utils/firebase/firebase.utils';
 
-// as the actual value you want to access
+import { createAction } from '../utils/reducer/reducer.utils';
+
 export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => null,
@@ -15,8 +16,6 @@ export const USER_ACTION_TYPE = {
 }
 
 const userReducer = (state, action) => {
-  console.log('dispatched');
-  console.log(action);
   const { type, payload } = action;
   
   switch(type) {
@@ -30,19 +29,15 @@ const userReducer = (state, action) => {
     };
   };
 
-const INITAIL_STATE = {
+const INITIAL_STATE = {
   currentUser: null,
 }
 
 export const UserProvider = ({ children }) => {
-  const [{ currentUser }, dispatch] = useReducer(userReducer, INITAIL_STATE);
-  console.log(currentUser);
+  const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE);
 
   const setCurrentUser = (user) => {
-    dispatch({
-      type: USER_ACTION_TYPE.SET_CURRENT_USER, 
-      payload: user,
-    });
+    dispatch(createAction(USER_ACTION_TYPE.SET_CURRENT_USER, user));
   };
 
   const value = { currentUser, setCurrentUser};
