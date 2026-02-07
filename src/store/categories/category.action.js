@@ -13,8 +13,7 @@ export const fetchCategoriesFailed = (error) =>
   createAction(CATEGORIS_ACTION_TYPES.FETCH_CATEGORISE_SUCCESS, error);
 
 export const fetchCategoriesAsync = () => async (disparch) => {
-  disparch(fetchCategoriesStart);
-
+  disparch(fetchCategoriesStart());
   try {
     const categoriesArray = await getCategoriesAndDocuments('categories');
     disparch(fetchCategoriesSuccess(categoriesArray));
