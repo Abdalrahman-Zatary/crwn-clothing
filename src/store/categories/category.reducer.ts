@@ -13,7 +13,7 @@ export type CategoriesState = {
   readonly error: Error | null;
 }
 
-const CATEGORIS_INITAIL_STATE = {
+const CATEGORIS_INITAIL_STATE: CategoriesState = {
   categories: [],
   isLoading: false,
   error: null,
