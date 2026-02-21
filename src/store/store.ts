@@ -12,7 +12,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 
 declare global {
   interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
   }
 }
 
@@ -28,25 +28,25 @@ const persistConfig: ExtendedPersistConfig = {
 
 const sagaMiddleware = createSagaMiddleware();
 
-const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const middleWares = [
-  process.env.NODE_ENV !== "production" && logger,
+  process.env.NODE_ENV !== 'production' && logger,
   sagaMiddleware,
 ].filter((middleware): middleware is Middleware => Boolean(middleware));
 
-const composeEnhancers =
+const composeEnhancer =
   (process.env.NODE_ENV !== 'production' &&
     window &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
 
-const composedEnhancers = composeEnhancers(applyMiddleware(...middleWares));
+const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
 export const store = createStore(
   persistedReducer,
   undefined,
-  composedEnhancers,
+  composedEnhancers
 );
 
 sagaMiddleware.run(rootSaga);
