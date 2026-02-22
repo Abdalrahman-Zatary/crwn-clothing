@@ -32,17 +32,14 @@ const Navigation = () => {
           <CrwnLogo className="logo" />
         </LogoContainer>
         <NavLinksContainer>
-          <NavLink to="/shop">
-            SHOP
-          </NavLink>
+          <NavLink to="/shop">SHOP</NavLink>
+          
           {currentUser ? (
-            <span onClick={signOutUser} style={{ cursor: 'pointer' }}>
+            <NavLink to="/" as='span' onClick={signOutUser}>
               SIGN OUT
-            </span>
+            </NavLink>
           ) : (
-            <NavLink to="/auth">
-              SIGN IN 
-            </NavLink>  
+            <NavLink to="/auth">SIGN IN</NavLink>
           )}
           <CartIcon />
         </NavLinksContainer>
