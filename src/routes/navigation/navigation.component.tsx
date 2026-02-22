@@ -36,13 +36,13 @@ const Navigation = () => {
             SHOP
           </NavLink>
           {currentUser ? (
-            <NavLink as="span" onClick={signOutUser}>
+            <span onClick={signOutUser} style={{ cursor: 'pointer' }}>
               SIGN OUT
-            </NavLink>
+            </span>
           ) : (
             <NavLink to="/auth">
               SIGN IN 
-            </NavLink>
+            </NavLink>  
           )}
           <CartIcon />
         </NavLinksContainer>
