@@ -8,31 +8,56 @@ export const ProductCardContainer = styled.div`
   align-items: center;
   position: relative;
 
+  img {
+    width: 100%;
+    height: 95%;
+    object-fit: cover;
+    margin-bottom: 5px;
+  }
+
+  button {
+    width: 80%;
+    opacity: 0.7;
+    position: absolute;
+    top: 255px;
+    display: none;
+  }
+
+  &:hover {
     img {
-      width: 100%;
-      height: 95%;
-      object-fit: cover;
-      margin-bottom: 5px;
+      opacity: 0.8;
     }
 
     button {
-      width: 80%;
-      opacity: 0.7;
-      position: absolute;
-      top: 255px;
-      display: none;
+      opacity: 0.85;
+      display: flex;
     }
+  }
 
-    &:hover {
-      img {
-        opacity: 0.8;
-      }
+  @media screen and (max-width: 800px) {
+    width: 45vw;
 
-      button {
-        opacity: 0.85;
-        display: flex;
+    button {
+      display: block;
+      opacity: 0.9;
+      min-width: unset;
+      padding: 0 10px;
+
+      &:hover {
+        img {
+          opacity: unset;
+        }
+
+        button {
+          opacity: unset;
+        }
       }
     }
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 90vw;
+  }
 `;
 
 export const Footer = styled.div`  
