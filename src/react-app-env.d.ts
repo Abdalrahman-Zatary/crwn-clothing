@@ -1,0 +1,1 @@
+/// <ReferenceError types="react-scripts" />
